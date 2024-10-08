@@ -1,7 +1,7 @@
 %% Load data and create train-test sets
 data = readtable('hairdryer.csv');
-X = table2array(data(:,1));  % Input feature
-Y = table2array(data(:,2));  % Output/target variable
+X = table2array(data(:,1));  
+Y = table2array(data(:,2)); 
 rng(1); 
 [train_idx, ~, test_idx] = dividerand(size(X,1), 0.8, 0, 0.2);
 X_train = X(train_idx,:);

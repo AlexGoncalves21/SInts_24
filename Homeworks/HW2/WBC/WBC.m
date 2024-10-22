@@ -3,9 +3,11 @@ data = readtable('wbco.csv');
 X = table2array(data(:,1:9));
 Y = table2array(data(:,10));
 
-missing_values_idx = isnan(X(:,6));
-col6_avg = mean(X(~missing_values_idx,6), 'omitnan');
-X(missing_values_idx,6) = col6_avg;
+missing_values_idx = isnan(X(:, 6));
+
+% Remove rows with missing values in column 6
+X(missing_values_idx, :) = [];  % Remove rows from X
+Y(missing_values_idx) = [];      % Remove corresponding entries from Y
 
 rng(1);
 train_test_partition = cvpartition(Y,'Holdout',0.2,'Stratify',true);
